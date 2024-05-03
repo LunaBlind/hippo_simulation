@@ -31,4 +31,40 @@
         </visual>
     </gazebo>
 
+    <gazebo>
+        <static>true</static>
+    </gazebo>
+    <link name="rack">
+        <xacro:zero_inertia />
+        <visual>
+            <geometry>
+                <mesh filename="$(find hippo_sim)/models/rack/meshes/rack.dae" />
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_to_rack" type="fixed">
+        <parent link="base_link" />
+        <child link="rack" />
+        <origin xyz="0 2.0 0.5" />
+    </joint>
+
+    <gazebo reference="rack">
+        <visual>
+            <material>
+                <ambient>1 1 1 1</ambient>
+                <diffuse>1 1 1 1</diffuse>
+                <specular>1 1 1 1</specular>
+                <pbr>
+                    <metal>
+                        <metalness>1</metalness>
+                        <roughness>0.5</roughness>
+                        <environment_map>$(find hippo_sim)/models/common/textures/env_map.dds</environment_map>
+                        <albedo_map>$(find hippo_sim)/models/common/textures/blue.png</albedo_map>
+                    </metal>
+                </pbr>
+            </material>
+        </visual>
+    </gazebo>
+
 </robot>
