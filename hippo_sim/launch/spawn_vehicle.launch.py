@@ -50,6 +50,14 @@ def generate_launch_description() -> LaunchDescription:
     description = {'robot_description': robot_description}
 
     vehicle_group = GroupAction(actions=[
+        Node(
+            package="robot_state_publisher",
+            executable="robot_state_publisher",
+            output="screen",
+            parameters=[description],
+            remappings=[("~/robot_description", "~/robot_state_publisher") ],
+
+        ),
         PushRosNamespace(vehicle_name),
         Node(package='hippo_sim',
              executable='spawn',
