@@ -5,6 +5,9 @@
     <xacro:include filename="$(find hippo_sim)/models/hippo3/urdf/mount_macro.xacro" />
     <xacro:include filename="$(find hippo_sim)/models/hippo3/urdf/clamp_macro.xacro" />
     <xacro:include filename="$(find hippo_sim)/models/camera/urdf/camera_macro.xacro" />
+    <!-- <xacro:include filename="$(find hippo_sim)/models/static_arm/urdf/static_arm.xacro" /> -->
+    <xacro:include
+        filename="$(find hippo_sim)/models/dynamic_arm+gripper/urdf/dynamic_arm+gripper.xacro" />
 
     <xacro:property name="thruster_xy" value="${thruster_r / 2**0.5}" />
     <gazebo>
@@ -59,6 +62,12 @@
             prefix="front_camera" xyz="${front_camera_position}"
             rpy="${front_camera_orientation}" />
     </xacro:if>
+
+    <joint name="arm_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="arm_link" />
+        <origin xyz="0 0 -0.1" rpy="0 1.57 0" />
+    </joint>
 
     <gazebo>
         <plugin filename="buoyancy" name="hippo_gz_plugins::buoyancy">

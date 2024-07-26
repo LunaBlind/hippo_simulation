@@ -72,6 +72,58 @@ def create_spawn_pool_action() -> Node:
                 ],
                 output='screen')
 
+def create_spawn_rack_action() -> Node:
+    package_path = get_package_share_path('hippo_sim')
+    rack_path = package_path / 'models/rack/urdf/rack.xacro'
+    rack_description = LaunchConfiguration(
+        'rack_description',
+        default=Command([
+            'ros2 run hippo_sim create_robot_description.py ',
+            '--input ',
+            str(rack_path),
+        ]))
+    rack_params = {'rack_description': rack_description}
+    return Node(package='hippo_sim',
+                executable='spawn',
+                parameters=[rack_params],
+                arguments=[
+                    '--param',
+                    'rack_description',
+                    '--x',
+                    '1.0',
+                    '--y',
+                    '4.0',
+                    '--z',
+                    '-1.0',
+                ],
+                output='screen')
+def create_spawn_object_action() -> Node:
+    package_path = get_package_share_path('hippo_sim')
+    test_object_path = package_path / 'models/test_object/urdf/test_object.xacro'
+    test_object_description = LaunchConfiguration(
+        'test_object_description',
+        default=Command([
+            'ros2 run hippo_sim create_robot_description.py ',
+            '--input ',
+            str(test_object_path),
+        ]))
+    test_object_params = {'test_object_description': test_object_description}
+    return Node(package='hippo_sim',
+                executable='spawn',
+                parameters=[test_object_params],
+                arguments=[
+                    '--param',
+                    'test_object_description',
+                    '--x',
+                    '0.7',
+                    '--y',
+                    '3.6',
+                    '--z',
+                    '-0.9',
+                ],
+                output='screen')
+
+
 
 def create_clock_bridge_action() -> Node:
     return Node(name='clock_bridge',
@@ -88,6 +140,8 @@ def generate_launch_description():
     declare_launch_args(launch_description=launch_description)
     actions = [
         create_spawn_pool_action(),
+        create_spawn_rack_action(),
+        create_spawn_object_action(),
         create_clock_bridge_action(),
         create_gazebo_action(),
         create_gazebo_gui_action(),
