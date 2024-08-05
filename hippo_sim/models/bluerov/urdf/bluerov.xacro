@@ -6,8 +6,10 @@
     <xacro:include filename="$(find hippo_sim)/models/hippo3/urdf/clamp_macro.xacro" />
     <xacro:include filename="$(find hippo_sim)/models/camera/urdf/camera_macro.xacro" />
     <!-- <xacro:include filename="$(find hippo_sim)/models/static_arm/urdf/static_arm.xacro" /> -->
+    <!-- <xacro:include -->
+    <!--     filename="$(find hippo_sim)/models/dynamic_arm+gripper/urdf/dynamic_arm+gripper.xacro" /> -->
     <xacro:include
-        filename="$(find hippo_sim)/models/dynamic_arm+gripper/urdf/dynamic_arm+gripper.xacro" />
+        filename="$(find hippo_sim)/models/newton_subsea_gripper/urdf/newton_subsea_gripper.xacro" />
 
     <xacro:property name="thruster_xy" value="${thruster_r / 2**0.5}" />
     <gazebo>
@@ -66,7 +68,8 @@
     <joint name="arm_joint" type="fixed">
         <parent link="base_link" />
         <child link="arm_link" />
-        <origin xyz="0 0 -0.1" rpy="0 1.57 0" />
+        <origin xyz="0 0.0 -0.12" rpy="0 -1.57 0" />
+        <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
     </joint>
 
     <gazebo>

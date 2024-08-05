@@ -13,22 +13,22 @@ def generate_launch_description() -> LaunchDescription:
     tmp = math.pi / 2.0
     poses = [
         {
-            'xyz': (0.7, 3.97, -0.5),
+            'xyz': (0.7, 3.97, -0.4),
             'rpy': (tmp, 0.0, 0.0),
             'tag_id': 0,
         },
         {
-            'xyz': (1.3, 3.97, -0.5),
+            'xyz': (1.3, 3.97, -0.4),
             'rpy': (tmp, 0.0, 0.0),
             'tag_id': 1,
         },
         {
-            'xyz': (0.7, 3.97, -0.9),
+            'xyz': (0.7, 3.97, -0.8),
             'rpy': (tmp, 0.0, 0.0),
             'tag_id': 2,
         },
         {
-            'xyz': (1.3, 3.97, -0.9),
+            'xyz': (1.3, 3.97, -0.8),
             'rpy': (tmp, 0.0, 0.0),
             'tag_id': 3,
         },
