@@ -115,7 +115,7 @@ def create_spawn_object_action() -> Node:
                     '--param',
                     'test_object_description',
                     '--x',
-                    '0.6',
+                    '0.7',
                     '--y',
                     '3.6',
                     '--z',
